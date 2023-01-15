@@ -15,7 +15,7 @@ public class MainController : MonoBehaviour
     void Start()
     {
         Interop.WVR_ShowPassthroughOverlay(false);
-        Interop.WVR_ShowProjectedPassthrough(true);
+        Interop.WVR_ShowProjectedPassthrough(false);
         var result = Interop.WVR_ShowPassthroughUnderlay(true);
         bill.gameObject.SetActive(false);
         //setup 

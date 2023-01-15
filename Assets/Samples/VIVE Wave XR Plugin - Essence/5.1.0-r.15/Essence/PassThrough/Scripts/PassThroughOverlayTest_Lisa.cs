@@ -25,18 +25,21 @@ namespace Wave.Essence.Samples.PassThrough
 		float alpha2 = 1.0f;
 		int steps = 0;
 
-		public Transform rightHandTransform;
+		public Transform leftHandTransform;
 		public GameObject planePrefab;
-
-		public Transform plane;
+		public GameObject planeInScene;
+		public GameObject planeInstance;
+		public bool planeSpawned;
+		public ParticleSystem smokeShow;
 
 		// Start is called before the first frame update
 		void Start()
 		{
 			Log.i(LOG_TAG, "PassThroughOverlay start: " + passThroughOverlayFlag);
-			showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(passThroughOverlayFlag);
-			Interop.WVR_ShowProjectedPassthrough(false);
+			Interop.WVR_ShowPassthroughUnderlay(true);
+			//Interop.WVR_ShowProjectedPassthrough(false);
 			Log.i(LOG_TAG, "ShowPassThroughOverlay start: " + showPassThroughOverlay);
+
 		}
 
 		// Update is called once per frame
@@ -44,83 +47,34 @@ namespace Wave.Essence.Samples.PassThrough
 		{
 			if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Right, WVR_InputId.WVR_InputId_Alias1_A))
 			{
-				bool visible = !Interop.WVR_IsPassthroughOverlayVisible();
-				if (visible)
-				{
-					if (steps == 0)
-					{
-						delaySubmit = false;
-						showIndicator = false;
-					}
-					else if (steps == 1)
-					{
-						delaySubmit = true;
-						showIndicator = false;
-					}
-					else if (steps == 2)
-					{
-						delaySubmit = false;
-						showIndicator = true;
-					}
-					else if (steps == 3)
-					{
-						delaySubmit = true;
-						showIndicator = true;
-					}
-					Interop.WVR_ShowPassthroughOverlay(visible, delaySubmit, showIndicator);
-					Log.i(LOG_TAG, "WVR_ShowPassthroughOverlay: visible:" + visible + " ,delaySubmit: " + delaySubmit + " ,showIndicator: " + showIndicator);
-					alpha = 1.0f;
-					Interop.WVR_SetPassthroughOverlayAlpha(alpha);
-			    }
-				else
-				{
-					Interop.WVR_ShowPassthroughOverlay(visible);
-					steps++;
-					if (steps >= 4)
-					{
-						steps = 0;
-					}
-				}
+				//START EXPERIENCE
+				//smokeShow = planeInstance.GetComponentInChildren(typeof (ParticleSystem));
+				smokeShow.Play();
 			}
 			else if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Left, WVR_InputId.WVR_InputId_Alias1_X))
 			{
-				Instantiate(planePrefab, rightHandTransform.position, Quaternion.identity);
-				//plane.transform.position = rightHandTransform.position;
+                if (planeInstance == null)
+                {
+					planeInstance = Instantiate(planePrefab, leftHandTransform.position, Quaternion.identity);
+					//planeInScene.transform.position = leftHandTransform.position;
+				} else 
+				{
+					planeInstance.transform.position = leftHandTransform.position;
+                }
+
 			}
 			else if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Left, WVR_InputId.WVR_InputId_Alias1_Y))
 			{
-				alpha2 -= 0.1f;
-				if (alpha2 < 0.0f)
-				{
-					alpha2 = 1.0f;
-				}
-				Interop.WVR_SetProjectedPassthroughAlpha(alpha2);
-				Log.i(LOG_TAG, "WVR_SetProjectedPassthroughAlpha: " + alpha2);
-			}
-			else if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Right, WVR_InputId.WVR_InputId_Alias1_B))
-			{
-				alpha -= 0.1f;
-				if (alpha < 0.0f)
-				{
-					alpha = 1.0f;
-				}
-				Interop.WVR_SetPassthroughOverlayAlpha(alpha);
-				Log.i(LOG_TAG, "SetPassthroughOverlayAlpha: " + alpha);
+
 			}
 		}
 
 	private void OnApplicationPause()
 		{
-			showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(false);
-			Interop.WVR_ShowProjectedPassthrough(false);
-			Log.i(LOG_TAG, "ShowPassThroughOverlay Pause: " + showPassThroughOverlay);
 		}
 
 		private void OnApplicationQuit()
 		{
-			showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(false);
-			Interop.WVR_ShowProjectedPassthrough(false);
-			Log.i(LOG_TAG, "ShowPassThroughOverlay Quit: " + showPassThroughOverlay);
 		}
 	}
 }
