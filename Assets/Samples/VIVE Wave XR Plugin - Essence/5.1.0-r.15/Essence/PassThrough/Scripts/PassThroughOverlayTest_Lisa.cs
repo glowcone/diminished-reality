@@ -31,6 +31,7 @@ namespace Wave.Essence.Samples.PassThrough
 		public GameObject planeInstance;
 		public bool planeSpawned;
 		public ParticleSystem smokeShow;
+		public AudioSource startSound;
 
 		// Start is called before the first frame update
 		void Start()
@@ -48,8 +49,14 @@ namespace Wave.Essence.Samples.PassThrough
 			if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Right, WVR_InputId.WVR_InputId_Alias1_A))
 			{
 				//START EXPERIENCE
-				//smokeShow = planeInstance.GetComponentInChildren(typeof (ParticleSystem));
-				smokeShow.Play();
+				if(planeInstance != null)
+                {
+					smokeShow = planeInstance.GetComponentInChildren<ParticleSystem>();
+					smokeShow.Play();
+					startSound = planeInstance.GetComponentInChildren<AudioSource>();
+					startSound.Play();
+
+				}
 			}
 			else if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Left, WVR_InputId.WVR_InputId_Alias1_X))
 			{
