@@ -135,7 +135,9 @@ namespace TextureSendReceive {
         }
     }
 
-    public class _TextureReceiver : MonoBehaviour {
+    public class _TextureReceiver : MonoBehaviour
+    {
+        public static event Action FrameReceived;
         public int port = 5000;
         public string IP = "127.0.0.1";
         TcpClient client;
@@ -209,6 +211,14 @@ namespace TextureSendReceive {
             return byteLength;
         }
 
+        public void sendCaptureCommand()
+        {
+            NetworkStream serverStream = client.GetStream();
+            byte[] hello = new byte[100];   //any message must be serialized (converted to byte array)
+            hello = System.Text.Encoding.UTF8.GetBytes("capture");  //conversion string => byte array
+            serverStream.Write(hello, 0, hello.Length); 
+        }
+        
         private void readFrameByteArray(int size) {
             bool disconnected = false;
 
@@ -245,6 +255,7 @@ namespace TextureSendReceive {
 
         void loadReceivedImage(byte[] receivedImageBytes) {
             if(texture) texture.LoadImage(receivedImageBytes);
+            FrameReceived?.Invoke();
         }
 
         public void SetTargetTexture (Texture2D t) {
