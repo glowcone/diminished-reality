@@ -28,6 +28,8 @@ namespace Wave.Essence.Samples.PassThrough
 		public Transform rightHandTransform;
 		public GameObject planePrefab;
 
+		public Transform plane;
+
 		// Start is called before the first frame update
 		void Start()
 		{
@@ -82,7 +84,8 @@ namespace Wave.Essence.Samples.PassThrough
 			}
 			else if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Left, WVR_InputId.WVR_InputId_Alias1_X))
 			{
-				Instantiate(planePrefab, rightHandTransform);
+				Instantiate(planePrefab, rightHandTransform.position, Quaternion.identity);
+				//plane.transform.position = rightHandTransform.position;
 			}
 			else if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Left, WVR_InputId.WVR_InputId_Alias1_Y))
 			{
