@@ -113,6 +113,7 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_INPUT_SYSTEM
 --compilation-defines=USE_VIVE_WAVE_XR_5_0_4
+--compilation-defines=UNITY_POST_PROCESSING_STACK_V2
 --compilation-defines=INPUT_SYSTEM_1_1_OR_NEWER
 --compilation-defines=ANIMATION_MODULE_PRESENT
 --compilation-defines=PHYSICS2D_MODULE_PRESENT
@@ -134,6 +135,7 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_BURST_1_0_0_OR_NEWER
 --compilation-defines=USING_ANIMATION_MODULE
 --compilation-defines=USING_PHYSICS2D_MODULE
+--compilation-defines=UNIVERSAL_1_0_0_OR_NEWER
 --compilation-defines=PACKAGE_INPUT_SYSTEM_EXISTS
 --compilation-defines=MODULE_AI_EXISTS
 --compilation-defines=MODULE_ANIMATION_EXISTS
@@ -157,6 +159,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\user1\Documents\diminished-reality\Temp\StagingArea\Data\Managed\Unity.InputSystem.dll
 --root-assembly=C:\Users\user1\Documents\diminished-reality\Temp\StagingArea\Data\Managed\Unity.VisualScripting.State.dll
 --root-assembly=C:\Users\user1\Documents\diminished-reality\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Universal.Runtime.dll
+--root-assembly=C:\Users\user1\Documents\diminished-reality\Temp\StagingArea\Data\Managed\Unity.Postprocessing.Runtime.dll
 --root-assembly=C:\Users\user1\Documents\diminished-reality\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Flow.dll
 --root-assembly=C:\Users\user1\Documents\diminished-reality\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Core.dll
 --root-assembly=C:\Users\user1\Documents\diminished-reality\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll

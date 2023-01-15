@@ -16,7 +16,6 @@ public class Billboard : MonoBehaviour
 
     public void LockPos()
     {
-        transform.position = cam.transform.position + cam.transform.forward * offset.magnitude;
-        transform.LookAt(cam.transform, cam.transform.up);
+        transform.parent = null;
     }
 }

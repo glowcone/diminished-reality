@@ -63,10 +63,13 @@ namespace Wave.Essence.Samples.PassThrough
                 if (planeInstance == null)
                 {
 					planeInstance = Instantiate(planePrefab, leftHandTransform.position, Quaternion.identity);
+					planeInstance.GetComponent<Renderer>().enabled = false;
 					//planeInScene.transform.position = leftHandTransform.position;
-				} else 
+                } else 
 				{
 					planeInstance.transform.position = leftHandTransform.position;
+					planeInstance.transform.rotation = leftHandTransform.rotation;
+					planeInstance.transform.up = Vector3.up;
                 }
 
 			}

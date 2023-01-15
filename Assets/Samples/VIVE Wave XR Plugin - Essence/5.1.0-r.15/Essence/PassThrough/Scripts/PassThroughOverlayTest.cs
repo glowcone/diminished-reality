@@ -38,6 +38,7 @@ namespace Wave.Essence.Samples.PassThrough
 		{
 			if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Right, WVR_InputId.WVR_InputId_Alias1_A))
 			{
+				return;
 				bool visible = !Interop.WVR_IsPassthroughOverlayVisible();
 				if (visible)
 				{
