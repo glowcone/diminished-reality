@@ -30,6 +30,7 @@ namespace Wave.Essence.Samples.PassThrough
 		public GameObject planeInScene;
 		public GameObject planeInstance;
 		public bool planeSpawned;
+		public ParticleSystem smokeShow;
 
 		// Start is called before the first frame update
 		void Start()
@@ -38,6 +39,7 @@ namespace Wave.Essence.Samples.PassThrough
 			Interop.WVR_ShowPassthroughUnderlay(true);
 			//Interop.WVR_ShowProjectedPassthrough(false);
 			Log.i(LOG_TAG, "ShowPassThroughOverlay start: " + showPassThroughOverlay);
+
 		}
 
 		// Update is called once per frame
@@ -46,6 +48,8 @@ namespace Wave.Essence.Samples.PassThrough
 			if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Right, WVR_InputId.WVR_InputId_Alias1_A))
 			{
 				//START EXPERIENCE
+				//smokeShow = planeInstance.GetComponentInChildren(typeof (ParticleSystem));
+				smokeShow.Play();
 			}
 			else if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Left, WVR_InputId.WVR_InputId_Alias1_X))
 			{
