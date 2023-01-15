@@ -214,7 +214,7 @@ namespace TextureSendReceive {
         public void sendCaptureCommand()
         {
             NetworkStream serverStream = client.GetStream();
-            byte[] hello = new byte[100];   //any message must be serialized (converted to byte array)
+            byte[] hello = new byte[24];   //any message must be serialized (converted to byte array)
             hello = System.Text.Encoding.UTF8.GetBytes("capture");  //conversion string => byte array
             serverStream.Write(hello, 0, hello.Length); 
         }

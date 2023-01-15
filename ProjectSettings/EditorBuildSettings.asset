@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samples/VIVE Wave XR Plugin - Essence/5.1.0-r.15/Essence/PassThrough/Lisa_PassThrough.unity
     guid: 69abbfa26036f0442a5d3f24159e2b7c
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 679dfe867a0cf4bc48688be59da21ab9
   m_configObjects:
     com.htc.upm.wave.xrsdk.xrsettings: {fileID: 11400000, guid: f6d2deb7e50404f77b254349edc8edb6,
       type: 2}
